@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :authorize, only: [:destroy]
 
     def create
         user = Nurse.find_by(username: params[:username])
@@ -6,7 +7,7 @@ class SessionsController < ApplicationController
             session[:nurse_id] = user.id
             render json: user
         else
-            render json: {errors: ["Not Authorized"]}, status: :unauthorized
+            render json: {errors: ["Invalid username or password"]}, status: :unauthorized
         end
     end
 
@@ -15,5 +16,9 @@ class SessionsController < ApplicationController
         head :no_content
     end
     
+    private
 
+    def authorize
+        return render json: {errors: ["Not Authorized"]}, status: :unauthorized unless session.include? :user_id
+    end
 end

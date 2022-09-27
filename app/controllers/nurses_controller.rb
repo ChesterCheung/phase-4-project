@@ -1,51 +1,34 @@
 class NursesController < ApplicationController
-  before_action :set_nurse, only: [:show, :update, :destroy]
 
-  # GET /nurses
+  # before_action :authorize, only: [:show, :index]
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
   def index
-    @nurses = Nurse.all
-
-    render json: @nurses
+    nurses = Nurse.all
+    render json: nurses
   end
 
-  # GET /nurses/1
   def show
-    render json: @nurse
+    nurse = Nurse.find_by(id: session[:user_id])
+    render json: nurse
   end
 
-  # POST /nurses
   def create
-    @nurse = Nurse.new(nurse_params)
-
-    if @nurse.save
-      render json: @nurse, status: :created, location: @nurse
-    else
-      render json: @nurse.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /nurses/1
-  def update
-    if @nurse.update(nurse_params)
-      render json: @nurse
-    else
-      render json: @nurse.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /nurses/1
-  def destroy
-    @nurse.destroy
+    nurse = Nurse.create!(nurse_params)
+    render json: nurse, status: :created
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_nurse
-      @nurse = Nurse.find(params[:id])
+
+    def nurse_params
+      params.permit(:username, :password, :password_confirmation )
     end
 
-    # Only allow a list of trusted parameters through.
-    def nurse_params
-      params.require(:nurse).permit(:username, :password_digest)
+    def authorize
+      return render json: {errors: ["Not Authorized"]}, status: :unauthorized unless session.include? :user_id
+    end
+
+    def render_unprocessable_entity_response(exception)
+      render json: {errors: exception.record.errors.full_messages}, status: :unprocessable_entity
     end
 end
