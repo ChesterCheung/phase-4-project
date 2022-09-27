@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+nurse1 = Nurse.create!(username: "chester", password: "123")
+
+puts "Done Seeding"
