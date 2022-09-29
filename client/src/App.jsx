@@ -11,10 +11,10 @@ import NavBar from './components/NavBar'
 const App = () => {
   const [user, setUser] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("/me").then((response)=> {
       if (response.ok) {
-        response.json().then((user) => setUser(user))
+        response.json().then((u) => setUser(u.username))
       }
     })
   }, []);

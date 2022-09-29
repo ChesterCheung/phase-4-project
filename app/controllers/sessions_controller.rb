@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
-    before_action :authorize, only: [:destroy]
+    # skip_before_action :authorized, only: [:login, :logout]
 
-    def create
+    def login
         user = Nurse.find_by(username: params[:username])
         if user&.authenticate(params[:password])
             session[:nurse_id] = user.id
@@ -11,14 +11,9 @@ class SessionsController < ApplicationController
         end
     end
 
-    def destroy
-        session.delete :user_id
-        head :no_content
+    def logout
+        session.delete :nurse_id
+       
     end
     
-    private
-
-    def authorize
-        return render json: {errors: ["Not Authorized"]}, status: :unauthorized unless session.include? :user_id
-    end
 end
