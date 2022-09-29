@@ -8,8 +8,8 @@ class NursesController < ApplicationController
   end
 
   def show
-    if current_user 
-      render json: current_user, status: :ok
+    if current_nurse 
+      render json: current_nurse, status: :ok
     else
       render json: "No current user set", status: :unauthorized
     end
@@ -17,7 +17,6 @@ class NursesController < ApplicationController
 
   def create
     nurse = Nurse.create!(nurse_params)
-    session[:nurse_id] = user.id
     render json: nurse, status: :created
   end
 

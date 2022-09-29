@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   # before_action :authorized
 
-  def current_user
+  def current_nurse
     Nurse.find_by(id: session[:nurse_id])
   end
 

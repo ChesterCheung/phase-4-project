@@ -39,10 +39,9 @@ const Login = ({onLogin}) => {
                     <label>Don't have an account?</label>
                     <button onClick={() => setShowLogin(false)}>Sign up</button>
                 </div>
-            </> ) : (
-            <>
+                </>
+            ) : (
                 <Signup setShowLogin={setShowLogin} onLogin={onLogin}/>
-            </>
         )}   
     </div>
   )
