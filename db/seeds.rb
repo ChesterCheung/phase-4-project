@@ -2,7 +2,8 @@
 puts "Seeding"
 
 nurse1 = Nurse.create!(username: "chester", password: "123")
-nurse2 = Nurse.create!(username: "simon", password: "123")
+nurse2 = Nurse.create!(username: "melinda", password: "123")
+nurse3 = Nurse.create!(username: "simon", password: "123")
 
 hospital1 = Hospital.create!(location:"New York", name: "Brooklyn Children's Hospital", description: "200 bed freestanding children's hospital")
 hospital2 = Hospital.create!(location:"New York", name: "City Children's Hospital", description: "Oldest childrens hospital in New York City")

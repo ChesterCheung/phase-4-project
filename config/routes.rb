@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :assignments
-  resources :hospitals
+  resources :hospitals, only: [:create, :index, :show]
   resources :nurses, only: [:create, :index, :show]
   
   #User Routes

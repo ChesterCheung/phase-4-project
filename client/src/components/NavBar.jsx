@@ -16,6 +16,7 @@ const NavBar = ({user, setUser}) => {
       <nav>
         <ul>
           <li><Link to="/"> Home </Link></li>
+          <li><Link to="/hospitals"> View Hospitals </Link></li>
           <li><Link to="/assignments"> List Assignments </Link></li>
           <li><Link to="/assignments/new"> Create Assignments </Link></li>
           <li><button onClick={handleLogout}>Not {user}?</button></li>
