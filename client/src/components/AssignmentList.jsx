@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 const AssignmentList = () => {
+
+
+
+
+
   return (
-    <div>AssignmentList</div>
+    <div>
+      View All Assignments
+    </div>
   )
 }
 
