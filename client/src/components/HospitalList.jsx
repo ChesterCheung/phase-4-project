@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import HospitalCard from './HospitalCard'
 
 const HospitalList = () => {
   const [hospitals, setHospitals] = useState([])
@@ -12,7 +13,7 @@ const HospitalList = () => {
 
   return (
     <div>
-      {hospitals.map((h) => h.name)}
+      {hospitals.map(() => <li><HospitalCard hospitals={hospitals}/> </li>)}
     </div>
   )
 }
