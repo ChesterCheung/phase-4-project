@@ -11,14 +11,14 @@ class HospitalsController < ApplicationController
         render json: hospital
     end
 
-    def show
-        hospital = Hospital.find_by(id: params[:id])
-        render json: hospital
-    end
+    # def show
+    #     hospital = Hospital.find_by(id: params[:id])
+    #     render json: hospital
+    # end
 
     private
     def hospital_params
-        params.permit(:location, :name, :image_url, :description)
+        params.permit(:name, :location, :description)
     end
 
     def render_unprocessable_entity_response(exception)
@@ -26,12 +26,3 @@ class HospitalsController < ApplicationController
     end
 
 end
-
-
-#   create_table "hospitals", force: :cascade do |t|
-#     t.string "location"
-#     t.string "name"
-#     t.string "image_url"
-#     t.string "description"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false

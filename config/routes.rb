@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :assignments
+  resources :assignments, only: [:create, :index]
   resources :hospitals, only: [:create, :index, :show]
   resources :nurses, only: [:create, :index, :show]
+
+  #Hospital Routes
+  post "/addhospital", to: "hospitals#create"
   
   #User Routes
   post "/signup", to: "nurses#create"

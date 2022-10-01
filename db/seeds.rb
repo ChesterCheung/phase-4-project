@@ -14,6 +14,7 @@ assignment1 = Assignment.create!(length_of_contract: "13 weeks", weekly_pay: 200
 assignment2 = Assignment.create!(length_of_contract: "13 weeks", weekly_pay: 3000, evaluation: "Great facility", nurse_id: nurse1.id, hospital_id: hospital1.id)
 assignment3 = Assignment.create!(length_of_contract: "13 weeks", weekly_pay: 2500, evaluation: "Great managers", nurse_id: nurse2.id, hospital_id: hospital3.id)
 assignment4 = Assignment.create!(length_of_contract: "13 weeks", weekly_pay: 6000, evaluation: "Extremely short staffed", nurse_id: nurse2.id, hospital_id: hospital2.id)
+assignment5 = Assignment.create!(length_of_contract: "13 weeks", weekly_pay: 1500, evaluation: "Great hospital", nurse_id: nurse3.id, hospital_id: hospital2.id)
 
 puts "Done Seeding"
 
