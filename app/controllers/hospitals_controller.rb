@@ -35,5 +35,3 @@ end
 #     t.string "description"
 #     t.datetime "created_at", precision: 6, null: false
 #     t.datetime "updated_at", precision: 6, null: false
-
-https://learning.flatironschool.com/courses/4611/assignments/150459?module_item_id=318805

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import HospitalCard from './HospitalCard'
+import Grid  from '@mui/material/Grid'
 
 const HospitalList = () => {
   const [hospitals, setHospitals] = useState([])
@@ -10,10 +11,14 @@ const HospitalList = () => {
     .then(data => setHospitals(data))
   }, [])
 
+  const hospitalCards = hospitals.map(hospital => <ul><HospitalCard id={hospital} hospital={hospital}/> </ul>)
 
   return (
     <div>
-      {hospitals.map(() => <li><HospitalCard hospitals={hospitals}/> </li>)}
+      <h1 align="center">Hospitals</h1>
+        <Grid container spacing={2}>
+          {hospitalCards}
+        </Grid>
     </div>
   )
 }

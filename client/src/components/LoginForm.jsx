@@ -19,7 +19,7 @@ const LoginForm = ({onLogin, setShowLogin}) => {
     }
 
   return (
-        <div class="container">
+        <div className="container">
             <h1 style={style}>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div style={style}>
