@@ -4,10 +4,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
-export default function AssignmentCard({assignment}) {
+export default function MyAssignmentCard({assignment}) {
+    const [myAssignments, setMyAssignments] = useState([]) 
+
+    useEffect(() => {
+        fetch("/assignments")
+        .then(resp => resp.json())
+        .then(data => setMyAssignments(data))
+      }, [])
 
   return (
     <Card sx={{ minWidth: 275 }}>

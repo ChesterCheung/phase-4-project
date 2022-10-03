@@ -24,7 +24,7 @@ export default function HospitalForm({addHospital}) {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form align="center" onSubmit={handleSubmit}>
         <Box align="center"
         sx={{
             '& .MuiTextField-root': { m: 1, width: '25ch' },

@@ -7,15 +7,23 @@ import AssignmentList from './components/AssignmentList'
 import AssignmentForm from './components/AssignmentForm'
 import NavBar from './components/NavBar'
 import HospitalForm from './components/HospitalForm';
+import MyAssignmentList from './components/MyAssignmentList'
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [hospitals, setHospitals] = useState([])
-  
+  const [assignments, setAssignments] = useState([])
+
   useEffect(() => {
     fetch("/hospitals")
     .then(resp => resp.json())
     .then(data => setHospitals(data))
+  }, [])
+
+  useEffect(() => {
+    fetch("/assignments")
+    .then(resp => resp.json())
+    .then(data => setAssignments(data))
   }, [])
 
   useEffect(() => {
@@ -40,7 +48,8 @@ const App = () => {
         <Route path="/" element={<Home />}/>
         <Route path="/hospitals" element={<HospitalList hospitals={hospitals} setHospitals={setHospitals} />}/>
         <Route path="/addhospitals" element={<HospitalForm addHospital={addHospital} />}/>
-        <Route path="/assignments" element={<AssignmentList />}/>
+        <Route path="/assignments" element={<AssignmentList assignments={assignments} user={user} />}/>
+        {/* <Route path="/assignments" element={<MyAssignmentList assignments={assignments} user={user} />}/> */}
         <Route path="/assignments/new" element={<AssignmentForm />}/>
       </Routes>
   </Router>

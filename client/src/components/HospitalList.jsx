@@ -2,9 +2,9 @@ import React from 'react'
 import HospitalCard from './HospitalCard'
 import Grid  from '@mui/material/Grid'
 
-const HospitalList = ({hospitals, setHospitals}) => {
+const HospitalList = ({hospitals}) => {
 
-  const hospitalCards = hospitals.map(hospital => <ul><HospitalCard id={hospital} hospital={hospital}/> </ul>)
+  const hospitalCards = hospitals.map(hospital => <ul><HospitalCard id={hospital.id} hospital={hospital}/> </ul>)
 
   return (
     <div>
