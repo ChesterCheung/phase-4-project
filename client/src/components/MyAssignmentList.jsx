@@ -1,19 +1,21 @@
 import React from 'react'
 import Grid  from '@mui/material/Grid'
-import MyAssignmentCard from './AssignmentCard'
+import MyAssignmentCard from './MyAssignnmentCard'
 
-const MyAssignmentList = ({assignments}) => {
+const MyAssignmentList = ({user}) => {
 
-  const assignmentCards = assignments.map(assignment => <ul><MyAssignmentCard id={assignment} assignment={assignment}/> </ul>)
+  const myAssignmentCards = user.assignments
+  const myAssignments = myAssignmentCards.map(assignment => <ul><MyAssignmentCard id={assignment} assignment={assignment}/></ul>)
 
   return (
     <div>
-      <h2 align="center">Assignments</h2>
+      <h2 align="center"> My Assignments</h2>
         <Grid container spacing={2}>
-          {assignmentCards}
+        {myAssignments}
         </Grid>
     </div>
   )
 }
 
 export default MyAssignmentList
+

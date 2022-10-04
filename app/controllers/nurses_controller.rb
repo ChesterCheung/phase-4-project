@@ -9,7 +9,7 @@ class NursesController < ApplicationController
 
   def show
     if current_nurse
-      render json: current_nurse, include: ["assignments"], status: :ok
+      render json: current_nurse, include: ["assignments", "assignments.hospital"], status: :ok
     else
       render json: "No current user set", status: :unauthorized
     end
