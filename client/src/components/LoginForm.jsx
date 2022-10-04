@@ -14,7 +14,7 @@ const LoginForm = ({onLogin, setShowLogin}) => {
         })
         .then(resp => resp.json())
         .then (user => {
-            onLogin(user.username)
+            onLogin(user)
         })
     }
 

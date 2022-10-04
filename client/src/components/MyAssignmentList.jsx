@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid  from '@mui/material/Grid'
-import myAssignmentCard from './AssignmentCard'
+import MyAssignmentCard from './AssignmentCard'
 
 const MyAssignmentList = ({assignments}) => {
 

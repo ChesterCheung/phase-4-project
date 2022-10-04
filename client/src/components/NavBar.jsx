@@ -15,7 +15,7 @@ const NavBar = ({user, setUser}) => {
     <div>
       <nav>
         <ul>
-          <p>Welcome {user}! </p>
+          <p>Welcome {user.username}! </p>
           <li><Link to="/"> Home </Link></li>
           <li><Link to="/hospitals"> View Hospitals </Link></li>
           <li><Link to="/addhospitals"> Add Hospital </Link></li>

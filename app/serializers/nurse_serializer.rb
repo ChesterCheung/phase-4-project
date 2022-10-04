@@ -1,3 +1,4 @@
 class NurseSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest
+  attributes :id, :username
+  has_many :assignments
 end
