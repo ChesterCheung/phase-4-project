@@ -2,9 +2,17 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
+export default function MyAssignmentCard({assignment, deleteAssignment}) {
 
-export default function MyAssignmentCard({assignment}) {
+  const onDelete = () => {
+  fetch("/assignments/" + assignment.id, {
+    method: "DELETE",
+  })
+  .then(data => deleteAssignment(data))
+  }
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -21,6 +29,10 @@ export default function MyAssignmentCard({assignment}) {
         <Typography variant="body2">
           {assignment.evaluation}
         </Typography>
+        <CardActions>
+        <Button onClick={onDelete} size="small">Delete</Button>
+        <Button size="small">Edit</Button>
+      </CardActions>
       </CardContent>
     </Card>
   );

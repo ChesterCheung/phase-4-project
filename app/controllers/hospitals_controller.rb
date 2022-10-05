@@ -11,11 +11,6 @@ class HospitalsController < ApplicationController
         render json: hospital
     end
 
-    # def show
-    #     hospital = Hospital.find_by(id: params[:id])
-    #     render json: hospital
-    # end
-
     private
     def hospital_params
         params.permit(:name, :location, :description)

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :assignments, only: [:create, :index]
+  resources :assignments, only: [:create, :index, :destroy]
   resources :hospitals, only: [:create, :index, :show]
   resources :nurses, only: [:create, :index, :show]
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post "/signup", to: "nurses#create"
   get "/me", to: "nurses#show"
   get "/nurses", to: "nurses#index"
-
+  
   # Sessions Routes
   post "/login", to: "sessions#login"
   delete "/logout", to: "sessions#logout"

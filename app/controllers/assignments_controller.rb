@@ -20,6 +20,16 @@ class AssignmentsController < ApplicationController
         render json: assignments
     end
 
+    def destroy
+        assignment = Assignment.find_by(id: params[:id])
+        if assignment
+            assignment.destroy
+            head :no_content
+        else
+            render json: {error: "Assignment not found"}, status: :not_found
+        end
+    end
+
 
     private
 
@@ -34,7 +44,3 @@ end
 #     t.string "evaluation"
 #     t.bigint "nurse_id", null: false
 #     t.bigint "hospital_id", null: false
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#     t.index ["hospital_id"], name: "index_assignments_on_hospital_id"
-#     t.index ["nurse_id"], name: "index_assignments_on_nurse_id"

@@ -13,26 +13,31 @@ const App = () => {
   const [user, setUser] = useState([]);
   const [hospitals, setHospitals] = useState([])
   const [assignments, setAssignments] = useState([])
-  const [currentAssignments, setCurrentAssignments] = useState([])
+  
 
   useEffect(() => {
-    fetch("/hospitals")
-    .then(resp => resp.json())
-    .then(data => setHospitals(data))
 
-    fetch("/assignments")
-    .then(resp => resp.json())
-    .then(data => setAssignments(data))
-  
     fetch("/me").then((response)=> {
       if (response.ok) {
         response.json().then((u) => setUser(u))
       }
     })
+
+    fetch("/assignments")
+    .then(resp => resp.json())
+    .then(data => setAssignments(data))
+
+    fetch("/hospitals")
+    .then(resp => resp.json())
+    .then(data => setHospitals(data))
   }, [])
 
   const addHospital = (hospital) => {
     setHospitals([...hospitals, hospital])
+  }
+
+  const deleteAssignment = (assign) => {
+    setAssignments(assignments.filter(a => a.id !== assign.id))
   }
 
   if(!user) return <Login onLogin={setUser}/>
@@ -46,7 +51,7 @@ const App = () => {
         <Route path="/hospitals" element={<HospitalList hospitals={hospitals} setHospitals={setHospitals} />}/>
         <Route path="/addhospitals" element={<HospitalForm addHospital={addHospital} />}/>
         <Route path="/assignments" element={<AssignmentList assignments={assignments} user={user} />}/>
-        <Route path="/myassignments" element={<MyAssignmentList user={user}/>}/>
+        <Route path="/myassignments" element={<MyAssignmentList deleteAssignment={deleteAssignment} user={user}/>}/>
         <Route path="/assignments/new" element={<AssignmentForm />}/>
       </Routes>
   </Router>

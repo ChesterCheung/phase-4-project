@@ -4,7 +4,7 @@ import Grid  from '@mui/material/Grid'
 
 const HospitalList = ({hospitals}) => {
 
-  const hospitalCards = hospitals.map(hospital => <ul><HospitalCard id={hospital.id} hospital={hospital}/> </ul>)
+  const hospitalCards = hospitals.map(hospital => <ul key={hospital.id}><HospitalCard id={hospital.id} hospital={hospital}/> </ul>)
 
   return (
     <div>

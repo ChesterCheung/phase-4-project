@@ -2,10 +2,10 @@ import React from 'react'
 import Grid  from '@mui/material/Grid'
 import MyAssignmentCard from './MyAssignnmentCard'
 
-const MyAssignmentList = ({user}) => {
+const MyAssignmentList = ({user, deleteAssignment}) => {
 
   const myAssignmentCards = user.assignments
-  const myAssignments = myAssignmentCards.map(assignment => <ul><MyAssignmentCard id={assignment} assignment={assignment}/></ul>)
+  const myAssignments = myAssignmentCards.map(assignment => <ul key={assignment.id} ><MyAssignmentCard id={assignment} deleteAssignment={deleteAssignment} assignment={assignment}/></ul>)
 
   return (
     <div>
