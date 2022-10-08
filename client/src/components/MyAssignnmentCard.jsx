@@ -5,13 +5,18 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
-export default function MyAssignmentCard({assignment, deleteAssignment}) {
+export default function MyAssignmentCard({assignment, deleteAssignment, deleteMyAssignment}) {
 
   const onDelete = () => {
   fetch("/assignments/" + assignment.id, {
     method: "DELETE",
   })
-  .then(data => deleteAssignment(data))
+  .then(data => {
+    deleteAssignment(data)
+    if(assignment) {
+      deleteMyAssignment(data)
+    }
+  })
   }
 
   return (

@@ -1,11 +1,22 @@
 import React from 'react'
 import Grid  from '@mui/material/Grid'
 import MyAssignmentCard from './MyAssignnmentCard'
+import { useEffect, useState } from 'react'
 
-const MyAssignmentList = ({user, deleteAssignment}) => {
+const MyAssignmentList = ({deleteAssignment}) => {
+  const [user, setUser] = useState([])
+  useEffect(() => {
 
-  const myAssignmentCards = user.assignments
-  const myAssignments = myAssignmentCards.map(assignment => <ul key={assignment.id} ><MyAssignmentCard id={assignment} deleteAssignment={deleteAssignment} assignment={assignment}/></ul>)
+    fetch("/testing")
+    .then(resp => resp.json())
+    .then(data => setUser(data))
+  }, [])
+
+  const deleteMyAssignment = (assign) => {
+    setUser(user.filter(a => a.id !== assign.id))
+  }
+
+  const myAssignments = user.map(assignment => <ul key={assignment.id} ><MyAssignmentCard id={assignment} deleteMyAssignment={deleteMyAssignment} deleteAssignment={deleteAssignment} assignment={assignment}/></ul>)
 
   return (
     <div>

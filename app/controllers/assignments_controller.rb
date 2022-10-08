@@ -15,6 +15,11 @@ class AssignmentsController < ApplicationController
         end
     end
 
+    def user_assignments
+        nurse = Nurse.find_by(id: session[:nurse_id])
+        render json: nurse.assignments
+    end
+
     def index 
         assignments = Assignment.all
         render json: assignments

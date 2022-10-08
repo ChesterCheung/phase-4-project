@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :hospitals, only: [:create, :index, :show]
   resources :nurses, only: [:create, :index, :show]
 
+  #Assignment Routes
+  get "/testing", to: "assignments#user_assignments"
   #Hospital Routes
   post "/addhospital", to: "hospitals#create"
   
