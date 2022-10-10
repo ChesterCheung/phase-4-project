@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :assignments, only: [:create, :index, :destroy]
+  resources :assignments, only: [:create, :index, :destroy, :update, :show]
   resources :hospitals, only: [:create, :index, :show]
   resources :nurses, only: [:create, :index, :show]
 
   #Assignment Routes
-  get "/testing", to: "assignments#user_assignments"
+  get "/myassignments", to: "assignments#user_assignments"
   #Hospital Routes
   post "/addhospital", to: "hospitals#create"
   

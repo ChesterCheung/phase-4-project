@@ -15,14 +15,28 @@ class AssignmentsController < ApplicationController
         end
     end
 
-    def user_assignments
-        nurse = Nurse.find_by(id: session[:nurse_id])
-        render json: nurse.assignments
-    end
-
     def index 
         assignments = Assignment.all
         render json: assignments
+    end
+
+    def show
+        assignment = Assignment.find_by(id:params[:id])
+        if assignment
+            render json: assignment, status: :ok
+        else
+            render json: {error: "Assignment not found"}
+        end
+    end
+
+    def update
+        assignment = Assignment.find_by(id:params[:id])
+        if assignment
+            assignment.update(assignment_params)
+            render json: assignment, status: :accepted
+        else
+            render json: {error: "Assignment not found"}
+        end
     end
 
     def destroy
@@ -35,11 +49,15 @@ class AssignmentsController < ApplicationController
         end
     end
 
+    def user_assignments
+        nurse = Nurse.find_by(id: session[:nurse_id])
+        render json: nurse.assignments
+    end
 
     private
 
     def assignment_params
-        params.permit(:length_of_contract, :weekly_pay, :evaluation, :hospital_id)
+        params.permit(:id, :length_of_contract, :weekly_pay, :evaluation, :hospital_id)
     end
     
 end

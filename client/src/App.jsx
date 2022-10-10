@@ -13,7 +13,7 @@ const App = () => {
   const [user, setUser] = useState([]);
   const [hospitals, setHospitals] = useState([])
   const [assignments, setAssignments] = useState([])
-  
+  const [updatedAssignment, setUpdatedAssignment] = useState(null)
 
   useEffect(() => {
 
@@ -22,10 +22,6 @@ const App = () => {
         response.json().then((u) => setUser(u))
       }
     })
-
-    fetch("/assignments")
-    .then(resp => resp.json())
-    .then(data => setAssignments(data))
 
     fetch("/hospitals")
     .then(resp => resp.json())
@@ -36,9 +32,23 @@ const App = () => {
     setHospitals([...hospitals, hospital])
   }
 
-  const deleteAssignment = (assign) => {
-    setAssignments(assignments.filter(a => a.id !== assign.id))
+  const editAssign = (updatedEval) => {
+    const update = assignments.map(assignment => {
+      if (assignment.id === updatedEval.id){
+        return updatedEval
+      } else {
+        return assignment
+       }
+    })
+    setAssignments(update)
   }
+
+  useEffect(()=>{
+    fetch("/assignments")
+    .then(resp => resp.json())
+    .then(data => setAssignments(data))
+  }, [updatedAssignment])
+
 
   if(!user) return <Login onLogin={setUser}/>
 
@@ -51,8 +61,8 @@ const App = () => {
         <Route path="/hospitals" element={<HospitalList hospitals={hospitals} setHospitals={setHospitals} />}/>
         <Route path="/addhospitals" element={<HospitalForm addHospital={addHospital} />}/>
         <Route path="/assignments" element={<AssignmentList assignments={assignments} user={user} />}/>
-        <Route path="/myassignments" element={<MyAssignmentList deleteAssignment={deleteAssignment} user={user}/>}/>
-        <Route path="/assignments/new" element={<AssignmentForm />}/>
+        <Route path="/myassignments" element={<MyAssignmentList editAssign={editAssign} updatedAssignment={updatedAssignment} setUpdatedAssignment={setUpdatedAssignment} user={user}/>}/>
+        <Route path="/assignments/new" element={<AssignmentForm hospitals={hospitals}/>}/>
       </Routes>
   </Router>
   </div>
