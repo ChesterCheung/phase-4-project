@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import HospitalOptions from './HospitalOptions';
 
 const AssignmentForm = ({hospitals}) => {
   const [lengthOfContract, setLengthOfContract] = useState("")
@@ -11,12 +12,24 @@ const AssignmentForm = ({hospitals}) => {
   const [evaluation, setEvaluation] = useState("")
   const [hospitalId, setHospitalId] = useState("")
 
-  const options = hospitals.map((hospital) => hospital.name);
+  const selectOptions = hospitals.map((hospital) => <HospitalOptions key={hospital.id} hospital={hospital} />);
 
+  // const formSubmit = (e) => {
+  //   e.preventDefault()
+  //     fetch("/assignments", {
+  //         method:"POST",
+  //         headers: {"Content-Type": "application/json",},
+  //         body: JSON.stringify({lengthOfContract, weeklyPay, evaluation, hospitalId}),
+  //     })
+  //     .then((r) => r.json())
+  //     .then((data)=> addHospital(data))
+  //     navigate("/assignments")
+  //     }
+  // }
 
   return (
       <div>
-        <form align="center" >
+        <form align="center" onSubmit={onSubmit}>
           <Box align="center" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}noValidate autoComplete="off">
               <h2>Add Assignment</h2>
               <TextField
@@ -37,16 +50,9 @@ const AssignmentForm = ({hospitals}) => {
               onChange={(e) => setEvaluation(e.target.value)}
               value={evaluation}
               />
-              <Autocomplete
-                    value={hospitals.id}
-                    onChange={(event, newValue) => {
-                      setHospitalId(newValue);
-                    }}
-                    id="hospital-name"
-                    options={options}
-                    sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Hospital" />}
-              />
+              <select value={hospitalId} onChange={(e)=> setHospitalId(e.target.value)}>
+                {selectOptions}
+              </select>
           </Box>
         <input type="submit" value="Add"></input>
         </form>
