@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    # skip_before_action :authorized, only: [:login, :logout]
+    
 
     def login
         user = Nurse.find_by(username: params[:username])

@@ -1,5 +1,5 @@
 class NursesController < ApplicationController
-  # skip_before_action :authorized, only: [:create, :show, :index]
+  
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
