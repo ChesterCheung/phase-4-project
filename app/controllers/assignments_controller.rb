@@ -6,12 +6,12 @@ class AssignmentsController < ApplicationController
     # end
 
     def create
-        newNurse = Nurse.find_or_create_by(username: params[:username][:username])
+        newNurse = Nurse.find_by(id: session[:nurse_id])
         createAssignment = newNurse.assignments.build(assignment_params)
         if newNurse.id && createAssignment.save
             render json: createAssignment, status: :ok
         else
-            render json: {errors: ["Something went wrong"]}, status: :unprocessable_entity
+            render json: {error: "Something went wrong"}, status: :unprocessable_entity
         end
     end
 
@@ -61,9 +61,4 @@ class AssignmentsController < ApplicationController
     end
     
 end
-# create_table "assignments", force: :cascade do |t|
-#     t.string "length_of_contract"
-#     t.integer "weekly_pay"
-#     t.string "evaluation"
-#     t.bigint "nurse_id", null: false
-#     t.bigint "hospital_id", null: false
+

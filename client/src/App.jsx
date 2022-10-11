@@ -49,6 +49,9 @@ const App = () => {
     .then(data => setAssignments(data))
   }, [updatedAssignment])
 
+  const addAssignment = (assign) => {
+    setAssignments([...assignments, assign])
+  }
 
   if(!user) return <Login onLogin={setUser}/>
 
@@ -62,7 +65,7 @@ const App = () => {
         <Route path="/addhospitals" element={<HospitalForm addHospital={addHospital} />}/>
         <Route path="/assignments" element={<AssignmentList assignments={assignments} user={user} />}/>
         <Route path="/myassignments" element={<MyAssignmentList editAssign={editAssign} updatedAssignment={updatedAssignment} setUpdatedAssignment={setUpdatedAssignment} user={user}/>}/>
-        <Route path="/assignments/new" element={<AssignmentForm hospitals={hospitals}/>}/>
+        <Route path="/assignments/new" element={<AssignmentForm addAssignment={addAssignment} hospitals={hospitals}/>}/>
       </Routes>
   </Router>
   </div>

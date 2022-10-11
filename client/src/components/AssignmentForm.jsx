@@ -1,35 +1,38 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import HospitalOptions from './HospitalOptions';
 
-const AssignmentForm = ({hospitals}) => {
+const AssignmentForm = ({hospitals, addAssignment}) => {
   const [lengthOfContract, setLengthOfContract] = useState("")
   const [weeklyPay, setWeeklyPay] = useState("")
   const [evaluation, setEvaluation] = useState("")
   const [hospitalId, setHospitalId] = useState("")
+  const navigate = useNavigate()
 
   const selectOptions = hospitals.map((hospital) => <HospitalOptions key={hospital.id} hospital={hospital} />);
 
-  // const formSubmit = (e) => {
-  //   e.preventDefault()
-  //     fetch("/assignments", {
-  //         method:"POST",
-  //         headers: {"Content-Type": "application/json",},
-  //         body: JSON.stringify({lengthOfContract, weeklyPay, evaluation, hospitalId}),
-  //     })
-  //     .then((r) => r.json())
-  //     .then((data)=> addHospital(data))
-  //     navigate("/assignments")
-  //     }
-  // }
+  const formSubmit = (e) => {
+    e.preventDefault()
+      fetch("/assignments", {
+          method:"POST",
+          headers: {"Content-Type": "application/json",},
+          body: JSON.stringify({length_of_contract: lengthOfContract,
+            weekly_pay: weeklyPay,
+            evaluation: evaluation,
+            hospital_id: hospitalId}),
+      })
+      .then((r) => r.json())
+      .then((data)=> addAssignment(data))
+      navigate("/assignments")
+  }
+  
 
   return (
       <div>
-        <form align="center" onSubmit={onSubmit}>
+        <form align="center" onSubmit={formSubmit}>
           <Box align="center" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}noValidate autoComplete="off">
               <h2>Add Assignment</h2>
               <TextField
