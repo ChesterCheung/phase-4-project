@@ -30,7 +30,7 @@ export default function MyAssignmentCard({editAssign, assignment, setUpdatedAssi
           <Typography sx={{ mb: 1.5 }}>
             {assignment.hospital.name}
           </Typography>
-          {edit ? <EditAssignment editAssign={editAssign} assignment={assignment} /> :
+          {edit ? <EditAssignment setEdit={setEdit} editAssign={editAssign} assignment={assignment} /> :
           <Typography variant="body2">
             {assignment.evaluation}
           </Typography>

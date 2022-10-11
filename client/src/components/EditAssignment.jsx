@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 
 
-const EditAssignment = ({assignment, editAssign}) => {
+const EditAssignment = ({assignment, editAssign, setEdit}) => {
     const [updatedEvaluation, setUpdatedEvaluation] = useState("")
     
-    const handleEditForm = () => {
+    const handleEditForm = (e) => {
+      e.preventDefault()
         fetch("/assignments/" + assignment.id, {
             method: "PATCH",
             headers:{
@@ -14,6 +15,7 @@ const EditAssignment = ({assignment, editAssign}) => {
         })
         .then(resp => resp.json())
         .then(data => editAssign(data))
+        setEdit(false)
     }
 
   return (
