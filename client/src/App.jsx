@@ -41,6 +41,7 @@ const App = () => {
        }
     })
     setAssignments(update)
+    setUpdatedAssignment(true)
   }
 
   useEffect(()=>{
