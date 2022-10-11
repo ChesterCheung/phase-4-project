@@ -3,7 +3,7 @@
 I'm a travel nurse, I meet lots of other travel nurses and often become close friends with them. Travel nursing is tough, your often your own advocate when it comes to looking for assignments and negotiating pay and housing. After working for a few years me and my close travel nursing friends have formed a chatroom where we post our travel assignment details, along with pay and our evalation of the medical center. This has helped us negotiate better paying contracts and allows us to get a feel for the hospital we could possibly work at. I wanted to build an application that allows us to more easily track assignments along with important details when looking for our nex assignment job. A user can add assignments and hospitals, along with their evaluation of the assignment and or hospital and view other nurses travel assignments as well.
 
 <p align="center">
-<img <a><img src="https://i.makeagif.com/media/8-05-2022/gjagkP.gif"></a>
+<img <a><img src="https://i.makeagif.com/media/10-11-2022/ruDT6L.gif"></a>
 </p>
 
 ### Requirements
